@@ -1,5 +1,4 @@
 #include<iostream>
-extern const float pi= 3.142;
 using namespace std;
 
 float pow(float n1,float n2){
@@ -20,37 +19,89 @@ float pow(float n1,float n2){
            return result;
        }
 
-       float sin(float n){
-    float s=0;
-    for(int k=1;k<=100;k++){
-        s=s+pow(n,2*k-1)*pow(-1,k+1)/fact(2*k-1);
-        
-        
+float lssthan360(float n){
+    int i = n/360;
+    n = n - i*360;
+    return n;
+}
+float sin(float n){
+    float s = 0;
+    float j = lssthan360(n);
+    if (j>=0 && j<=90){
+        float rad = j*(3.142)/180;
+        for (int k=1; k<=10; k++){
+            s = s + pow(-1, k+1)*(pow(rad, 2*k-1)/fact(2*k-1));
+        }
+    }
+    if (j>90 && j<=180){
+        float l = 180 - j;
+        float rad = l*(3.142)/180;
+        for (int k=1; k<=10; k++){
+            s = s + pow(-1, k+1)*(pow(rad, 2*k-1)/fact(2*k-1));
+        }
+    }
+    if (j>180 && j<=270){
+        float l = j - 180;
+        float t= 0;
+        float rad = l*(3.142)/180;
+        for (int k=1; k<=10; k++){
+            t = t + pow(-1, k+1)*(pow(rad, 2*k-1)/fact(2*k-1));
+        s = (-1)*t;
+        }
+    }
+    if (j>270 && j<360){
+        float l = 360 - j;
+        float t= 0;
+        float rad = l*(3.142)/180;
+        for (int k=1; k<=10; k++){
+            t = t + pow(-1, k+1)*(pow(rad, 2*k-1)/fact(2*k-1));
+        s = (-1)*t;
+        }
     }
     return s;
 }
 float cos(float n){
-    float s =0;
-    for (int k=1; k<=100; k++){
-        s = s + pow(n,2*k)*(pow(-1,k)/fact(2*k));
+    float s=1;
+    float j = lssthan360(n);
+    if (j>=0 && j<=90){
+        float rad = j*(3.142)/180;
+        for (int k=2; k<=10; k++){
+            s = s + pow(-1, k+1)*(pow(rad, 2*k-2)/fact(2*k-2));
+        }
+    }
+    if (j>90 && j<=180){
+        float l = 180 - j;
+        float t = 1;
+        float rad = l*(3.142)/180;
+        for (int k=2; k<=10; k++){
+            t = t + pow(-1, k+1)*(pow(rad, 2*k-2)/fact(2*k-2));
+        }
+        s = (-1)*t;
+    }
+    if (j>180 && j<=270){
+        float l = j - 180;
+        float t = 1;
+        float rad = l*(3.142)/180;
+        for (int k=2; k<=10; k++){
+            t = t + pow(-1, k+1)*(pow(rad, 2*k-2)/fact(2*k-2));
+        }
+        s = (-1)*t;
+    }
+    if (j>270 && j<360){
+        float l = 360 - j;
+        float rad = l*(3.142)/180;
+        for (int k=2; k<=10; k++){
+            s = s + pow(-1, k+1)*(pow(rad, 2*k-2)/fact(2*k-2));
+        }
     }
     return s;
 }
-float roundof(float n, int z){
-            float nem;
-            float num= n*(pow(10,z));
-            int e= num*10;
-            if(e%10==5 && (e/10)%2==0){
-                int d=(int)num;
-                nem= (float)d/(pow(10,z));
-            }
-            return nem;
-        }
 float tan(float n){
-    float t= sin(n)/cos(n);
+    float t = sin(n)/cos(n);
     return t;
 }
-        
+
+
 int main(){
     float n1,n2;
      int n;
