@@ -145,19 +145,19 @@ int main(){
         goto label;
 
         case 6:
-        cout<<" enter the angle "<<endl;
+        cout<<" enter the angle in degree "<<endl;
         cin>>n1;
         cout<<sin(n1)<<endl;
         goto label;
         
           case 7:
-        cout<<" enter the angle "<<endl;
+        cout<<" enter the angle in degree "<<endl;
         cin>>n1;
         cout<<cos(n1)<<endl;
         goto label;
 
           case 8:
-        cout<<" enter the angle "<<endl;
+        cout<<" enter the angle in degree"<<endl;
         cin>>n1;
         cout<<tan(n1)<<endl;
         goto label;
